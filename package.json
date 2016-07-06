@@ -1,0 +1,19 @@
+{
+  "name": "equation-test",
+  "version": "1.0.0",
+  "description": "an app for a programming interview for Equation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TomPridham/equation-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TomPridham/equation-test/issues"
+  },
+  "homepage": "https://github.com/TomPridham/equation-test#readme"
+}
