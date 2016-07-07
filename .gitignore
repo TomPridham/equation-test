@@ -5,3 +5,4 @@ keys.js
 *.out
 data
 *.log
+dist

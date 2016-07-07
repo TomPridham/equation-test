@@ -1,0 +1,21 @@
+<div class="container ">
+    <div class="center-text center-block">
+        <h1 ng-show="count" ng-click="move(count=count-1)" class=" center-block text-muted glyphicon glyphicon-chevron-up"></h1>
+    </div>
+    <div ng-if=" count==0"class="jumbotron ">
+        <h1 class="text-center">Health and Wealth</h1>
+        <h4 class="text-center">Lots of interesting conclusions can be drawn when you look at data the right way. Of
+            course, data by itself isn't useful. It needs to be presented in an understandable format that provides
+            insight into what is happening.</h4>
+    </div>
+    <div ng-if="count==1" class="panel panel-default">
+        <div class="panel-body">
+            <div class="col-xs-12">Take this data for example.</div>
+            <div class="col-md-6 col-xs-12">You might look at it and think, "Okay, that's cool that</div>
+            <canvas class="col-md-6 col-xs-12" id="myChart" width="400" height="400"></canvas>
+
+        </div>
+        {{count}}
+    </div>
+    <h1 ng-click="move(count=count+1)" class="text-muted glyphicon glyphicon-chevron-down"></h1>
+</div>
