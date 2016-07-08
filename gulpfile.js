@@ -25,7 +25,7 @@ let env = `development`;
 gulp.task(`js`, () => {
 
     let b = browserify({
-        entries: './index.js',
+        entries: './public/index.js',
         debug: true
     });
 
@@ -44,14 +44,18 @@ gulp.task(`js`, () => {
 });
 
 gulp.task(`css`, () => {
-    return gulp.src(`./styles.css`)
-        .pipe(uglyCss())
+
+    let bootstrapStream = gulp.src(`./node_modules/bootstrap/dist/css/bootstrap.css`);
+    let cssStream = gulp.src(`./public/styles.css`);
+
+    return merge(bootstrapStream, cssStream)
         .pipe(concat(`style.css`))
+        .pipe(uglyCss())
         .pipe(gulp.dest(`./dist`));
 });
 
 gulp.task(`views`, () => {
-    return gulp.src(`./home/*.html`)
+    return gulp.src(`./public/home/*.html`)
         .pipe(htmlMin(
             {collapseWhitespace: true}
         ))
@@ -59,11 +63,16 @@ gulp.task(`views`, () => {
 });
 
 gulp.task(`index`, () => {
-    return gulp.src(`./index.html`)
+    return gulp.src(`./public/index.html`)
         .pipe(htmlMin(
             {collapseWhitespace: true}
         ))
         .pipe(gulp.dest(`./dist/`))
+});
+
+gulp.task(`fonts`, () => {
+    return gulp.src(`./node_modules/bootstrap/dist/fonts/**.*`)
+        .pipe(gulp.dest(`./dist/fonts`))
 });
 
 gulp.task('clean', () => {
@@ -75,13 +84,13 @@ gulp.task(`deploy`, [`js`, `css`, `views`, `index`], (next) => {
     return next();
 });
 
-gulp.task(`dev`, [`js`, `css`, `views`, `index`], (next) => {
+gulp.task(`dev`, [`js`, `css`, `views`, `index`, `fonts`], (next) => {
     env = `development`;
     return next();
 });
 
 gulp.task(`watch`, ()=> {
-    gulp.watch([`./home/*.*`, `./index.js`, `./index.html`, `./style.css`], [`dev`])
+    gulp.watch([`./public/home/*.*`, `./public/index.js`, `./public/index.html`, `./public/style.css`], [`dev`])
 });
 
 gulp.task(`default`, [`dev`, `watch`], (next)=> {

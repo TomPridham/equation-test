@@ -1,9 +1,9 @@
 `use strict`;
-import angular from 'angular';
-import {Chart} from 'chart.js'
-import { keys } from '../keys.js';
+import  Chart  from 'Chart'
+import { keys } from '../../keys.js';
 
-angular.module("myApp").controller("homeController", ($scope, $http, $q) => {
+module.exports = function ($scope, $http, $q) {
+
     let ctx = document.getElementById("myChart");
     $scope.count = 0;
 
@@ -51,11 +51,11 @@ angular.module("myApp").controller("homeController", ($scope, $http, $q) => {
                 scales: {
                     yAxes: [{
                         ticks: {
-                            beginAtZero:true
+                            beginAtZero: true
                         }
                     }]
                 }
             }
         });
     };
-});
+};
