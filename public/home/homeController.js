@@ -15,24 +15,30 @@ module.exports = function ($scope, $http, $q) {
     let data2 = {labels: {}, data:[]};
     let myChart;
 
+    //gets immunization data
     $http.get('https://opendata.utah.gov/resource/9heb-s7ea.json', keys).then(
         (req)=> {
             console.log(Object.keys(data2.labels).length);
             let index =0;
             req.data.forEach(datum => {
-                // debugger;
+                //if it's a new district
                 if (data2.labels[datum.school_district] === undefined) {
-                    console.log(Object.keys(data2.labels).length);
-                    index = Object.keys(data2.labels).length;
-                    data2.labels[datum.school_district] = index;
+                    //add to labels
+                    data2.labels[datum.school_district] = Object.keys(data2.labels).length;
+                    //add kids at index
                     data2.data.push([Number(datum.of_students_adequately_immunized_all_six_vaccines), Number(datum.total_students_enrolled)]);
                 } else{
+                    //assign index to shorten
                     index = data2.labels[datum.school_district];
+                    //add kids from matching district to dataset
                     data2.data[index] = [data2.data[index][0] + Number(datum.of_students_adequately_immunized_all_six_vaccines), data2.data[index][1] + Number(datum.total_students_enrolled)];
                 }
             });
 
-            // data2.forEach
+            //get percentage immunized
+            for (let i = 0; i < data2.data.length; i++) {
+                data2.data[i] = data2.data[i][0]/data2.data[i][1];
+            }
             console.log(data2)
 
         }, (req, res)=> {
