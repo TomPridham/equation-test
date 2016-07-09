@@ -1,4 +1,4 @@
-`use strict`;
+'use strict';
 
 //declarations
 const gulp = require(`gulp`);

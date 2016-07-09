@@ -46,6 +46,7 @@ module.exports = function ($scope, $http, $q) {
 
     $scope.move = (count) => {
         // console.log(data);
+        console.log(data2.districts);
         myChart = new Chart(ctx, {
             type: 'bar',
             data: {
