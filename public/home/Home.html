@@ -1,51 +1,72 @@
-<div class="container ">
-    <div class="center-text center-block">
-        <h1 id="up"  ng-click="move(count=count-1)"
-            class=" center-block text-muted glyphicon glyphicon-chevron-up"></h1>
-    </div>
-    <div  class="jumbotron ">
-        <h1 class="text-center">Health and Wealth</h1>
-        <h4 class="text-center">Lots of interesting conclusions can be drawn when you look at data the right way. Of
-            course, data by itself isn't useful. It needs to be presented in an understandable format that provides
-            insight into what is happening.</h4>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <div class="col-xs-12">Take this data for example. It's data from 2014 showing immunization rates for all Utah kindergartens.</div>
-            <div class="col-md-6 col-xs-12">
-                <p>You might look at it and think, "Okay, that's cool that lets me see which school districts have lower immunization rates."</p>
-                <p>What it doesn't let you see is why people certain districts have lower immunization rates. It doesn't give you any information you can act on intelligently and it doesn't give you insight into why certain districts might be less or more likely to immunize their kids.</p>
-            </div>
-            <canvas class="col-md-6 col-xs-12" id="myChart"></canvas>
+<div id="container" class="container">
+    <h1 id="up" ng-click="move(-1)" class="text-muted glyphicon glyphicon-chevron-up"></h1>
+
+    <div class="vertical-center container">
+        <div class=" jumbotron">
+            <h1 class="text-center">Health and Wealth</h1>
+            <h4 class="text-center">Lots of interesting conclusions can be drawn when you look at data the right way. Of
+                course, data by itself isn't useful. It needs to be presented in an understandable format that provides
+                insight into what is happening.</h4>
         </div>
     </div>
-    <div class="panel panel-default">
+
+    <div id="pageOne" class="panel panel-default">
         <div class="panel-body">
-            <div class="col-xs-12">This is the Utah Census data from 2013 showing the average wealth of different zipcodes.</div>
+            <div class="col-xs-12">
+                <h4>Take this data for example. It's data from 2014 showing immunization rates for all Utah
+                    kindergartens.</h4>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xs-12">
+                <p>You might look at it and think, "Okay, that's cool that lets me see which school districts have lower
+                    immunization rates."</p>
+                <p>What it doesn't let you see is why people certain districts have lower immunization rates. It doesn't
+                    give you any information you can act on intelligently and it doesn't give you insight into why
+                    certain districts might be less or more likely to immunize their kids.</p>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xs-12">
+                <canvas style="height: 100%; width: 100%;" id="chart1"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div id="pageTwo"class="panel panel-default">
+        <div class="panel-body">
+            <div class="col-xs-12">This is the Utah Census data from 2013 showing the average wealth of different counties.
+            </div>
             <div class="col-md-6 col-xs-12">
-                <p>This isn't very useful by itself either. It's probably even less useful than the previous chart as there isn't any health information on it at all.</p>
+                <p>This isn't very useful by itself either. It's probably even less useful than the previous chart as
+                    there isn't any health information on it at all.</p>
             </div>
             <canvas class="col-md-6 col-xs-12" id="chart2"></canvas>
         </div>
     </div>
+
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="col-xs-12">This is the Utah Census data merged with the immunization data.</div>
             <div class="col-md-6 col-xs-12">
-                <p>This shows some interesting things. Richer areas are more likely to have poorer immunization rates than poorer areas. This is probably counterintuitive because you would think that richer people who have more access to doctors. </p>
+                <p>This shows some interesting things. Richer areas are more likely to have poorer immunization rates
+                    than poorer areas. This is probably counterintuitive because you would think that richer people who
+                    have more access to doctors. </p>
             </div>
             <canvas class="col-md-6 col-xs-12" id="chart3"></canvas>
         </div>
     </div>
+
     <div class="panel panel-default">
         <div class="panel-body">
-            <div class="col-xs-12">Looking at the health outcomes for different zipcodes seems to suggest something different.</div>
+            <div class="col-xs-12">Looking at the health outcomes for different zipcodes seems to suggest something
+                different.
+            </div>
             <div class="col-md-6 col-xs-12">
-                <p>Based on the last chart, you would think that rich people would also have poorer health outcomes because they seemingly visit the doctor less.</p>
-                <p>But, the data would suggest otherwise. That, indeed, rich people have better health outcomes because of their wealth.</p>
+                <p>Based on the last chart, you would think that rich people would also have poorer health outcomes
+                    because they seemingly visit the doctor less.</p>
+                <p>But, the data would suggest otherwise. That, indeed, rich people have better health outcomes because
+                    of their wealth.</p>
             </div>
             <canvas class="col-md-6 col-xs-12" id="chart4"></canvas>
         </div>
     </div>
-    <h1  id="down" ng-click="move(count=count+1)" class="text-muted glyphicon glyphicon-chevron-down"></h1>
+
+    <h1 id="down" ng-click="move(1)" class="text-muted glyphicon glyphicon-chevron-down"></h1>
 </div>

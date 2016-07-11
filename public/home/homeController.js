@@ -1,87 +1,103 @@
-`use strict`;
+"use strict";
 import  Chart  from 'chart.js'
-import { keys } from '../../keys.js';
+import {keys} from '../../keys.js';
 
-module.exports = function ($scope, $http, $q) {
+module.exports = function ($scope, $http) {
 
-    Chart.defaults.global = {
-        responsive: true,
-        maintainAspectRatio: true
-
-    };
-    let ctx = document.getElementById("myChart");
-    $scope.count = 0;
-
-    let data2 = {labels: {}, data:[]};
+    Chart.defaults.global.responsive          = true;
+    Chart.defaults.global.maintainAspectRatio = true;
+    $scope.count                              = 0;
+    let immunizationData                      = {labels: {}, data: []};
+    let censusData                            = {labels: [], data: []};
+    let charts                                = ["chart1", "chart2", "chart3", "chart4"];
+    let ids                                   = ["pageOne", "pageTwo", "pageThree", "pageFour"];
+    let data                                  = [immunizationData, censusData];
+    let options                               = [
+        {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        },
+        {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: false
+                    }
+                }]
+            }
+        }
+    ];
     let myChart;
 
     //gets immunization data
     $http.get('https://opendata.utah.gov/resource/9heb-s7ea.json', keys).then(
-        (req)=> {
-            console.log(Object.keys(data2.labels).length);
-            let index =0;
-            req.data.forEach(datum => {
+        (res)=> {
+            let index = 0;
+            res.data.forEach(datum => {
                 //if it's a new district
-                if (data2.labels[datum.school_district] === undefined) {
+                if (immunizationData.labels[datum.school_district] === undefined) {
                     //add to labels
-                    data2.labels[datum.school_district] = Object.keys(data2.labels).length;
+                    immunizationData.labels[datum.school_district] = Object.keys(immunizationData.labels).length;
                     //add kids at index
-                    data2.data.push([Number(datum.of_students_adequately_immunized_all_six_vaccines), Number(datum.total_students_enrolled)]);
-                } else{
-                    //assign index to shorten
-                    index = data2.labels[datum.school_district];
+                    immunizationData.data.push([Number(datum.of_students_adequately_immunized_all_six_vaccines), Number(datum.total_students_enrolled)]);
+                } else {
+                    //assign index to shorten code
+                    index                        = immunizationData.labels[datum.school_district];
                     //add kids from matching district to dataset
-                    data2.data[index] = [data2.data[index][0] + Number(datum.of_students_adequately_immunized_all_six_vaccines), data2.data[index][1] + Number(datum.total_students_enrolled)];
+                    immunizationData.data[index] = [immunizationData.data[index][0] + Number(datum.of_students_adequately_immunized_all_six_vaccines), immunizationData.data[index][1] + Number(datum.total_students_enrolled)];
                 }
             });
 
-            //get percentage immunized
-            for (let i = 0; i < data2.data.length; i++) {
-                data2.data[i] = data2.data[i][0]/data2.data[i][1];
-            }
-            console.log(data2)
+            index                   = immunizationData.labels;
+            immunizationData.labels = [];
+            //get percentage immunized and format labels
+            for (let key in index) {
+                immunizationData.labels[index[key]] = key;
+                immunizationData.data[index[key]]   = immunizationData.data[index[key]][0] / immunizationData.data[index[key]][1];
 
+            }
         }, (req, res)=> {
         });
 
-    $scope.move = (count) => {
-        // console.log(data);
-        console.log(data2.districts);
-        myChart = new Chart(ctx, {
-            type: 'bar',
+    //get census data
+    $http.get('https://opendata.utah.gov/resource/byga-7rfv.json', keys).then(
+        (res)=> {
+            res.data.forEach(datum => {
+
+                //add to labels
+                censusData.labels.push((datum.people_quickfacts).match(/(.*)County/)[0].trim());
+                //add income at index
+                censusData.data.push(Number(datum.median_household_income_2009_2013));
+            });
+        }, (req, res)=> {
+
+        });
+
+    $scope.move = (num) => {
+        $scope.count += num;
+
+
+        myChart = new Chart(document.getElementById(charts[$scope.count - 1]), {
+
+            type: 'line',
             data: {
-                labels: data2.districts,
+                labels: data[$scope.count - 1].labels,
                 datasets: [{
                     label: '# of Votes',
-                    data: [],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255,99,132,1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
+                    data: data[$scope.count - 1].data,
                     borderWidth: 1
                 }]
             },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }
+            options: options[$scope.count - 1]
         });
+        console.log(document.getElementById(ids[$scope.count - 1]).offsetTop);
+        let myElement                                  = document.getElementById(ids[$scope.count - 1]);
+        document.getElementById('container').scrollTop = myElement.offsetTop;
     };
-};
+}
+;
