@@ -1,8 +1,8 @@
 <div id="container" class="container">
     <h1 ng-show="count" id="up" ng-click="move(-1)" class="text-muted glyphicon glyphicon-chevron-up"></h1>
 
-    <div id="page-0" class="vertical-center container">
-        <div class=" jumbotron">
+    <div ng-show="count===0" id="page-0" class="vertical-center container">
+        <div class="top-space jumbotron">
             <h1 class="text-center">Health and Wealth</h1>
             <h4 class="text-center">Lots of interesting conclusions can be drawn when you look at data the right way. Of
                 course, data by itself isn't useful. It needs to be presented in an understandable format that provides
@@ -10,64 +10,73 @@
         </div>
     </div>
 
-    <div id="page-1" class="vertical-center panel panel-default">
+    <div ng-show="count===1" id="page-1" class="vertical-center panel panel-default">
         <div class="panel-body">
             <div class="col-xs-12">
                 <h4>Take this data for example. It's data from 2014 showing immunization rates for all Utah
                     kindergartens.</h4>
             </div>
-            <div class="col-lg-6 col-md-6 col-xs-12">
-                <p>You might look at it and think, "Okay, that's cool that lets me see which school districts have lower
-                    immunization rates."</p>
+            <div class="col-lg-4 col-md-4 col-xs-12">
+                <p>You might look at it and think, "Okay, that's cool that lets me see which school districts have lower immunization rates."</p>
                 <p>What it doesn't let you see is why people certain districts have lower immunization rates. It doesn't
                     give you any information you can act on intelligently and it doesn't give you insight into why
                     certain districts might be less or more likely to immunize their kids.</p>
+                <p>There's also a lot going on, so it's hard to easily pick out key points. At least <a href="http://www.cdc.gov/nchs/fastats/immunize.htm">91%</a> of the population needs to be immunized for herd immunity to be effective for some of the more common diseases, e.g. chicken pox. Let's remove all the points that are above that threshold since they're doing fine.</p>
             </div>
-            <div class="col-lg-6 col-md-6 col-xs-12">
-                <canvas style="height: 100%; width: 100%;" id="chart-1"></canvas>
+            <div class="col-lg-8 col-md-8 col-xs-12">
+                <canvas id="chart-1"></canvas>
             </div>
         </div>
     </div>
 
-    <div id="page-2" class="vertical-center panel panel-default">
+    <div ng-show="count===2" id="page-2" class="vertical-center panel panel-default">
         <div class="panel-body">
-            <div class="col-xs-12">This is the Utah Census data from 2013 showing the average wealth of different
-                counties.
+            <div class="col-xs-12">
+                <h4>With all the good performing districts and the scale adjusted, it becomes much easier to see what's going on.</h4>
             </div>
-            <canvas class="col-md-6 col-xs-12" id="chart-2"></canvas>
-            <div class="col-md-6 col-xs-12">
-                <p>This isn't very useful by itself either. It's probably even less useful than the previous chart as
-                    there isn't any health information on it at all.</p>
+            <div class="col-lg-8 col-md-8 col-xs-12">
+                <canvas id="chart-2"></canvas>
+            </div>
+            <div class="col-lg-4 col-md-4 col-xs-12">
+                <p>Now it's a lot easier to pick out which districts are underperforming. You might assume, "Oh, those are probably poorer districts with less access to healthcare."</p>
+                <p>Let's see how that theory plays out.</p>
             </div>
         </div>
     </div>
 
-    <div id="page-3" class="vertical-center panel panel-default">
+    <div ng-show="count===3" id="page-3" class="vertical-center panel panel-default">
         <div class="panel-body">
-            <div class="col-xs-12">This is the Utah Census data merged with the immunization data.</div>
-            <div class="col-md-6 col-xs-12">
-                <p>This shows some interesting things. Richer areas are more likely to have poorer immunization rates
-                    than poorer areas. This is probably counterintuitive because you would think that richer people who
-                    have more access to doctors. </p>
+            <div class="col-xs-12">
+                <h4>
+                    This is the Utah Census data from 2013 showing the average wealth of different counties.
+                </h4>
             </div>
-            <canvas class="col-md-6 col-xs-12" id="chart-3"></canvas>
+            <div class="col-lg-4 col-md-4 col-xs-12">
+                <p>This isn't very useful by itself, but we can combine it with the previous chart to get something much better.
+                </p>
+            </div>
+            <div class="col-lg-8 col-md-8 col-xs-12">
+                <canvas  id="chart-3"></canvas>
+            </div>
         </div>
     </div>
 
-    <div id="page-4" class=" vertical-center panel panel-default">
+    <div ng-show="count===4" id="page-4" class="vertical-center panel panel-default">
         <div class="panel-body">
-            <div class="col-xs-12">Looking at the health outcomes for different zipcodes seems to suggest something
-                different.
+            <div class="col-xs-12">
+                <h4>This is the Utah Census data merged with the immunization data with richer districts being greener.</h4>
             </div>
-            <canvas class="col-md-6 col-xs-12" id="chart-4"></canvas>
-            <div class="col-md-6 col-xs-12">
-                <p>Based on the last chart, you would think that rich people would also have poorer health outcomes
-                    because they seemingly visit the doctor less.</p>
-                <p>But, the data would suggest otherwise. That, indeed, rich people have better health outcomes because
-                    of their wealth.</p>
+            <div class="col-lg-8 col-md-8 col-xs-12">
+                <canvas  id="chart-4"></canvas>
+            </div>
+            <div class="col-lg-4 col-md-4 col-xs-12">
+                <p>I used a baseline of $45k median household income to determine relative affluence. Yellow is right around that $45k mark and gets greener as income rises and redder as it falls.</p>
+                <p>This shows some interesting things. Richer areas aren't always more likely to have better immunization rates than poorer areas. In fact, some of the poorest areas aren't even on the list because their immunization rates were too high! This is probably counterintuitive because you would think that richer people would have more access to doctors would have appropriately higher immunization rates.
+                </p>
+                <p>Now you can ask some better questions. Like, "What is it about richer areas that makes them less likely to immunize when they have greater access to healthcare?"</p>
             </div>
         </div>
     </div>
 
-    <h1  id="down" ng-click="move(1)" class="text-muted glyphicon glyphicon-chevron-down"></h1>
+    <h1 ng-show="count<4" id="down" ng-click="move(1)" class="text-muted glyphicon glyphicon-chevron-down"></h1>
 </div>

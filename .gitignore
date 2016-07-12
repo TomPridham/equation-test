@@ -1,8 +1,8 @@
-node_modules
-.idea
+/.idea/
 config.json
 keys.js
 *.out
 data
 *.log
-dist
+/dist/
+/node_modules/
