@@ -6,7 +6,7 @@ To run:
         
         cd equation-test
         
-        gulp
+        gulp deploy
         
         cd dist
         
