@@ -2,9 +2,11 @@ To run:
 
         git clone https://github.com/TomPridham/equation-test.git
         
-        npm i
-        
         cd equation-test
+        
+        drop keys.js into top-level
+        
+        npm i
         
         gulp deploy
         
