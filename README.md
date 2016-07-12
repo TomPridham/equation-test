@@ -4,6 +4,8 @@ To run:
                 
         cd equation-test
         
+        drop keys.js into top-level
+        
         npm i
         
         gulp deploy
