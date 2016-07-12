@@ -4,7 +4,7 @@ global.jQuery = require("jquery");
 require("bootstrap");
 const angular = require("angular");
 require("angular-ui-router");
-const homeController = require("./home/homeController.js");
+import {homeController} from "./home/homeController";
 
 angular.module("myApp", ["ui.router"]);
 angular.module("myApp").controller("HomeController", ["$scope", "$http", "$q", homeController]);

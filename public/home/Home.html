@@ -1,7 +1,7 @@
 <div id="container" class="container">
-    <h1 id="up" ng-click="move(-1)" class="text-muted glyphicon glyphicon-chevron-up"></h1>
+    <h1 ng-show="count" id="up" ng-click="move(-1)" class="text-muted glyphicon glyphicon-chevron-up"></h1>
 
-    <div class="vertical-center container">
+    <div id="page-0" class="vertical-center container">
         <div class=" jumbotron">
             <h1 class="text-center">Health and Wealth</h1>
             <h4 class="text-center">Lots of interesting conclusions can be drawn when you look at data the right way. Of
@@ -10,7 +10,7 @@
         </div>
     </div>
 
-    <div id="pageOne" class="panel panel-default">
+    <div id="page-1" class="vertical-center panel panel-default">
         <div class="panel-body">
             <div class="col-xs-12">
                 <h4>Take this data for example. It's data from 2014 showing immunization rates for all Utah
@@ -24,24 +24,25 @@
                     certain districts might be less or more likely to immunize their kids.</p>
             </div>
             <div class="col-lg-6 col-md-6 col-xs-12">
-                <canvas style="height: 100%; width: 100%;" id="chart1"></canvas>
+                <canvas style="height: 100%; width: 100%;" id="chart-1"></canvas>
             </div>
         </div>
     </div>
 
-    <div id="pageTwo"class="panel panel-default">
+    <div id="page-2" class="vertical-center panel panel-default">
         <div class="panel-body">
-            <div class="col-xs-12">This is the Utah Census data from 2013 showing the average wealth of different counties.
+            <div class="col-xs-12">This is the Utah Census data from 2013 showing the average wealth of different
+                counties.
             </div>
+            <canvas class="col-md-6 col-xs-12" id="chart-2"></canvas>
             <div class="col-md-6 col-xs-12">
                 <p>This isn't very useful by itself either. It's probably even less useful than the previous chart as
                     there isn't any health information on it at all.</p>
             </div>
-            <canvas class="col-md-6 col-xs-12" id="chart2"></canvas>
         </div>
     </div>
 
-    <div class="panel panel-default">
+    <div id="page-3" class="vertical-center panel panel-default">
         <div class="panel-body">
             <div class="col-xs-12">This is the Utah Census data merged with the immunization data.</div>
             <div class="col-md-6 col-xs-12">
@@ -49,24 +50,24 @@
                     than poorer areas. This is probably counterintuitive because you would think that richer people who
                     have more access to doctors. </p>
             </div>
-            <canvas class="col-md-6 col-xs-12" id="chart3"></canvas>
+            <canvas class="col-md-6 col-xs-12" id="chart-3"></canvas>
         </div>
     </div>
 
-    <div class="panel panel-default">
+    <div id="page-4" class=" vertical-center panel panel-default">
         <div class="panel-body">
             <div class="col-xs-12">Looking at the health outcomes for different zipcodes seems to suggest something
                 different.
             </div>
+            <canvas class="col-md-6 col-xs-12" id="chart-4"></canvas>
             <div class="col-md-6 col-xs-12">
                 <p>Based on the last chart, you would think that rich people would also have poorer health outcomes
                     because they seemingly visit the doctor less.</p>
                 <p>But, the data would suggest otherwise. That, indeed, rich people have better health outcomes because
                     of their wealth.</p>
             </div>
-            <canvas class="col-md-6 col-xs-12" id="chart4"></canvas>
         </div>
     </div>
 
-    <h1 id="down" ng-click="move(1)" class="text-muted glyphicon glyphicon-chevron-down"></h1>
+    <h1  id="down" ng-click="move(1)" class="text-muted glyphicon glyphicon-chevron-down"></h1>
 </div>

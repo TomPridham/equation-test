@@ -20,6 +20,8 @@ body {
 }
 
 .vertical-center {
+    padding-top:100px;
+    padding-bottom:100px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -27,6 +29,7 @@ body {
 }
 
 #up {
+    z-index: 1000;
     position: fixed;
     top: 0;
     width: 100%;
@@ -37,6 +40,7 @@ body {
 }
 
 #down {
+    z-index: 1000;
     position: fixed;
     top: 90vh;
     width: 100%;
