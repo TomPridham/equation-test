@@ -1,12 +1,12 @@
 To run: 
 
         git clone https://github.com/TomPridham/equation-test.git
+                
+        cd equation-test
         
         npm i
         
-        cd equation-test
-        
-        gulp
+        gulp deploy
         
         cd dist
         
