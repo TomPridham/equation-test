@@ -79,7 +79,7 @@ gulp.task('clean', () => {
     return del(["./dist/**/*"]);
 });
 
-gulp.task("deploy", ["js", "css", "views", "index"], (next) => {
+gulp.task("deploy", ["js", "css", "views", "index", "fonts"], (next) => {
     env = "production";
     return next();
 });
