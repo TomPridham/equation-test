@@ -1,8 +1,9 @@
 <div id="container" class="container">
-    <h1 ng-show="count" id="up" ng-click="move(-1)" class="text-muted glyphicon glyphicon-chevron-up"></h1>
-
+    <div class="container">
+        <h1 ng-show="count" id="up" ng-click="move(-1)" class=" text-muted glyphicon glyphicon-chevron-up"></h1>
+    </div>
     <div ng-show="count===0" id="page-0" class="vertical-center container">
-        <div class="top-space jumbotron">
+        <div class="vertical-center jumbotron">
             <h1 class="text-center">Health and Wealth</h1>
             <h4 class="text-center">Lots of interesting conclusions can be drawn when you look at data the right way. Of
                 course, data by itself isn't useful. It needs to be presented in an understandable format that provides
@@ -78,5 +79,8 @@
         </div>
     </div>
 
-    <h1 ng-show="count<4" id="down" ng-click="move(1)" class="text-muted glyphicon glyphicon-chevron-down"></h1>
+    <div class="container">
+        <h1 ng-show="count<4" id="down" ng-click="move(1)" class="text-muted glyphicon glyphicon-chevron-down"></h1>
+
+    </div>
 </div>
